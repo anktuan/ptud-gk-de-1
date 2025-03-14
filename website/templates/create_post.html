@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <div class="card p-4 shadow-sm">
+    <h2 class="text-center mb-3">
+      <i class="fa-solid fa-pen-to-square"></i> Tạo Bài Viết Mới
+    </h2>
+
+    <form method="POST" action="{{ url_for('posts.create_post') }}">
+      <div class="mb-3">
+        <label for="title" class="form-label">Tiêu đề bài viết</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          placeholder="Nhập tiêu đề bài viết"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="content" class="form-label">Nội dung bài viết</label>
+        <textarea
+          class="form-control"
+          id="content"
+          name="content"
+          rows="6"
+          placeholder="Nhập nội dung bài viết"
+          required
+        ></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="image_url" class="form-label">Link ảnh (không bắt buộc)</label>
+        <input
+          type="url"
+          class="form-control"
+          id="image_url"
+          name="image_url"
+          placeholder="https://example.com/image.jpg"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="flow" class="form-label">Flow bài viết (không bắt buộc)</label>
+        <select class="form-select" id="flow" name="flow">
+          <option value="">Chọn flow</option>
+          <option value="news">Tin tức</option>
+          <option value="tutorial">Hướng dẫn</option>
+          <option value="review">Đánh giá</option>
+          <option value="other">Khác</option>
+        </select>
+      </div>
+
+      <div class="d-flex justify-content-between mt-3">
+        <a href="{{ url_for('posts.manage_posts') }}" class="btn btn-secondary">
+          <i class="fa-solid fa-arrow-left"></i> Quay lại
+        </a>
+        <button type="submit" class="btn btn-success">
+          <i class="fa-solid fa-check"></i> Đăng bài
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

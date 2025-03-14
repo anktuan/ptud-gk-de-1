@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Chỉnh sửa bài viết{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="card p-4 shadow-sm">
+    <h2 class="text-center mb-3">
+      <i class="fa-solid fa-edit"></i> Chỉnh Sửa Bài Viết
+    </h2>
+
+    <form method="POST" action="{{ url_for('posts.edit_post', slug=post.slug) }}">
+      <div class="mb-3">
+        <label for="title" class="form-label">Tiêu đề bài viết</label>
+        <input type="text" class="form-control" id="title" name="title" value="{{ post.title }}" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="content" class="form-label">Nội dung bài viết</label>
+        <textarea class="form-control" id="content" name="content" rows="6" required>
+        {{ post.content }}</textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="image_url" class="form-label">Link ảnh (không bắt buộc)</label>
+        <input type="url" class="form-control" id="image_url" name="image_url" value="{{ post.image_url }}" placeholder="https://example.com/image.jpg">
+      </div>
+
+      <div class="mb-3">
+        <label for="flow" class="form-label">Flow bài viết (không bắt buộc)</label>
+        <select class="form-select" id="flow" name="flow">
+          <option value="" {% if not post.flow %}selected{% endif %}>Chọn flow</option>
+          <option value="news" {% if post.flow == 'news' %}selected{% endif %}>Tin tức</option>
+          <option value="tutorial" {% if post.flow == 'tutorial' %}selected{% endif %}>Hướng dẫn</option>
+          <option value="review" {% if post.flow == 'review' %}selected{% endif %}>Đánh giá</option>
+          <option value="other" {% if post.flow == 'other' %}selected{% endif %}>Khác</option>
+        </select>
+      </div>
+
+      <div class="d-flex justify-content-between mt-3">
+        <a href="{{ url_for('posts.manage_posts') }}" class="btn btn-secondary">
+          <i class="fa-solid fa-arrow-left"></i> Quay lại
+        </a>
+        <button type="submit" class="btn btn-primary">
+          <i class="fa-solid fa-save"></i> Lưu thay đổi
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

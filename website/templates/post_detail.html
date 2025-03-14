@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">{{ post.title }}</h1>
+            {% if post.flow %}
+            <div class="mb-3">
+                <span class="badge bg-primary">{{ post.flow }}</span>
+            </div>
+            {% endif %}
+            {% if post.image_url %}
+            <div class="mb-3">
+                <img src="{{ post.image_url }}" class="img-fluid rounded" alt="Ảnh bài viết">
+            </div>
+            {% endif %}
+            <div class="card-text">{{ post.content }}</div>
+            <div class="mt-3 text-muted">
+                <small>Tác giả: {{ post.author.username }}</small>
+                <br>
+                <small>Cập nhật lần cuối: {{ post.updated_at.strftime('%d/%m/%Y %H:%M') }}</small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

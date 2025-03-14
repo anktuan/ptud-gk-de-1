@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% block content %}
+<div
+  class="container d-flex justify-content-center align-items-center"
+  style="min-height: 80vh"
+>
+  <div class="card p-4 shadow-sm" style="max-width: 450px; width: 100%">
+    <h2 class="text-center mb-3">
+      <i class="fa-solid fa-user-plus"></i> Đăng Ký
+    </h2>
+
+    <form method="POST">
+      <div class="mb-3">
+        <label for="username" class="form-label">Tên tài khoản</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            placeholder="Nhập tên tài khoản"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <div class="input-group">
+          <span class="input-group-text"
+            ><i class="fa-solid fa-envelope"></i
+          ></span>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Nhập email"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password1" class="form-label">Mật khẩu</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+          <input
+            type="password"
+            class="form-control"
+            id="password1"
+            name="password1"
+            placeholder="Nhập mật khẩu"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password2" class="form-label">Xác nhận mật khẩu</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+          <input
+            type="password"
+            class="form-control"
+            id="password2"
+            name="password2"
+            placeholder="Nhập lại mật khẩu"
+            required
+          />
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100">
+        <i class="fa-solid fa-user-check"></i> Đăng ký
+      </button>
+    </form>
+
+    <p class="text-center mt-3">
+      Đã có tài khoản?
+      <a href="{{ url_for('auth.login') }}" class="text-primary fw-bold"
+        >Đăng nhập ngay</a
+      >
+    </p>
+  </div>
+</div>
+{% endblock %}

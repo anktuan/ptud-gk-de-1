@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Notifications</title>
+</head>
+<body>
+    {% extends "index.html" %}
+
+    {% block content %}
+    <div class="notifications-container">
+        <h2 class="section-title">Your Notifications</h2>
+        
+        <div class="notifications-list">
+        {% for notification in notifications %}
+            <div class="notification-card">
+                <div class="notification-content">
+                    {{ notification.message }}
+                </div>
+                <div class="notification-meta">
+                    <span class="notification-date">{{ notification.created_at.strftime('%B %d, %Y %H:%M') }}</span>
+                    {% if not notification.read %}
+                    <span class="notification-badge">New</span>
+                    {% endif %}
+                </div>
+                <form method="POST" action="{{ url_for('mark_notification_read', notification_id=notification.id) }}" class="notification-action">
+                    <button type="submit" class="btn btn-small">Mark as Read</button>
+                </form>
+            </div>
+            {% else %}
+            <p class="no-notifications">No notifications yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
